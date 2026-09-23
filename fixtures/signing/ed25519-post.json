@@ -1,0 +1,25 @@
+{
+  "description": "Signed POST with a body. Rebuild the signature base and verify with the public key.",
+  "key": {
+    "keyid": "key_2m8xq4vd",
+    "algorithm": "ed25519",
+    "public_key": "yndXJoSzB05wjFMFdecbqc9xuKWN1PuRGb643U2pUI0=",
+    "private_key": "FUHSxcW3irEyWVG5f0hGCb0jvWte5cBQik/X1SOiDlA="
+  },
+  "request": {
+    "method": "POST",
+    "url": "https://copen.dev/api/v1/settlements",
+    "body": "{\"allocations\":[{\"domain\":\"docs.example.com\",\"amount\":500}],\"usage_note\":\"Read the auth guide\"}",
+    "headers": {
+      "Content-Digest": "sha-256=:F9SLexuLHzXnAYb0XHWoqumbzWv1ksPy0Jq2CwaYv8M=:",
+      "Signature-Input": "sig1=(\"@method\" \"@target-uri\" \"content-digest\");created=1758585600;keyid=\"key_2m8xq4vd\";alg=\"ed25519\"",
+      "Signature": "sig1=:XtmSCFZ9zEJ17D9rM9MsrdLzqeaqfTmX9BPNlZCbpApY1Rj/zU/hp2ljswtdp5CBzLZzZx3keXsZEqwxrvEYBw==:"
+    }
+  },
+  "expected": {
+    "content_digest": "sha-256=:F9SLexuLHzXnAYb0XHWoqumbzWv1ksPy0Jq2CwaYv8M=:",
+    "signature_base": "\"@method\": POST\n\"@target-uri\": https://copen.dev/api/v1/settlements\n\"content-digest\": sha-256=:F9SLexuLHzXnAYb0XHWoqumbzWv1ksPy0Jq2CwaYv8M=:\n\"@signature-params\": (\"@method\" \"@target-uri\" \"content-digest\");created=1758585600;keyid=\"key_2m8xq4vd\";alg=\"ed25519\""
+  },
+  "created": 1758585600,
+  "note": "Verify with now = created; the signature window is deliberately short."
+}

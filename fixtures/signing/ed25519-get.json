@@ -1,0 +1,19 @@
+{
+  "description": "Signed GET with no body: content-digest is omitted from the covered components.",
+  "key": {
+    "keyid": "key_2m8xq4vd",
+    "algorithm": "ed25519",
+    "public_key": "yndXJoSzB05wjFMFdecbqc9xuKWN1PuRGb643U2pUI0=",
+    "private_key": "FUHSxcW3irEyWVG5f0hGCb0jvWte5cBQik/X1SOiDlA="
+  },
+  "request": {
+    "method": "GET",
+    "url": "https://copen.dev/api/v1/whoami",
+    "headers": {
+      "Signature-Input": "sig1=(\"@method\" \"@target-uri\");created=1758585600;keyid=\"key_2m8xq4vd\";alg=\"ed25519\"",
+      "Signature": "sig1=:jUGZlQn93yto3s/D5pFTYhkIPdnuFvVZitiFFa9/28+phFzdyaGfjFZ87XIX+OskCz0u8J6fIRAYYjgFKd+SAA==:"
+    }
+  },
+  "created": 1758585600,
+  "note": "Verify with now = created; the signature window is deliberately short."
+}

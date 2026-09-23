@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ofp.dev/schemas/0.3/settlement.schema.json",
+  "title": "OFP settlement",
+  "type": "object",
+  "required": ["settlement_id", "status", "currency", "total", "contributions"],
+  "properties": {
+    "settlement_id": { "type": "string" },
+    "status": { "enum": ["paid", "requires_payment", "pending", "expired"] },
+    "method": { "enum": ["balance", "checkout"] },
+    "currency": { "type": "string" },
+    "total": { "type": "integer" },
+    "operator": {
+      "type": "object",
+      "description": "Present when the request was signed by a registered key.",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "domain": { "type": "string" },
+        "verified": { "type": "boolean" },
+        "balance_after": { "type": "integer" }
+      }
+    },
+    "contributions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["contribution_id", "site_id", "amount", "status"],
+        "properties": {
+          "contribution_id": { "type": "string" },
+          "site_id": { "type": "string" },
+          "domain": { "type": "string" },
+          "amount": { "type": "integer" },
+          "weight": { "type": ["number", "null"] },
+          "basis": { "enum": ["voluntary", "usage", "agreement"] },
+          "status": { "enum": ["pending", "paid", "expired"] }
+        }
+      }
+    },
+    "unsettled": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["reason"],
+        "properties": {
+          "ref": { "type": "string" },
+          "site_id": { "type": "string" },
+          "domain": { "type": "string" },
+          "reason": { "enum": ["site_not_found", "no_settled_method", "below_minimum", "no_weight", "amount_out_of_range"] },
+          "funding_links": { "type": "array", "items": { "type": "object" } }
+        }
+      }
+    },
+    "payment": {
+      "type": "object",
+      "properties": {
+        "method": { "type": "string" },
+        "checkout_url": { "type": "string", "format": "uri" },
+        "instructions": { "type": "string" }
+      }
+    },
+    "status_url": { "type": "string", "format": "uri" },
+    "receipt_url": { "type": "string", "format": "uri" }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "ofp": "0.3",
+  "registry": { "name": "Copen", "url": "https://copen.dev" },
+  "site": {
+    "id": "site_k2p9x7m4",
+    "domain": "docs.example.com",
+    "name": "Example Docs",
+    "description": "Reference documentation for the Example API."
+  },
+  "status": "accepting",
+  "verified_domain": true,
+  "basis": "voluntary",
+  "note": "If these docs saved you time, a contribution keeps them free.",
+  "payment": {
+    "methods": [
+      {
+        "type": "ofp_settlement",
+        "currency": "usd",
+        "amount_unit": "minor",
+        "suggested_amounts": [100, 500, 2000],
+        "min_amount": 50,
+        "max_amount": 50000,
+        "endpoint": "https://copen.dev/api/v1/settlements",
+        "supports": ["balance", "checkout", "batch"]
+      },
+      { "type": "github", "label": "GitHub Sponsors", "url": "https://github.com/sponsors/example" }
+    ]
+  },
+  "links": {
+    "manifest": "https://copen.dev/api/v1/manifest/site_k2p9x7m4",
+    "human_page": "https://copen.dev/s/site_k2p9x7m4",
+    "spec": "https://copen.dev/llms.txt"
+  }
+}

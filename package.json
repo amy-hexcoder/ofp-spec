@@ -1,0 +1,49 @@
+{
+  "name": "@ofp/spec",
+  "version": "0.3.0",
+  "description": "Open Funding Protocol: how a site tells AI agents what it accepts, and how an agent declares who it is and settles up. Spec, JSON Schemas, types and conformance fixtures.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./schemas/*": "./schemas/*",
+    "./fixtures/*": "./fixtures/*"
+  },
+  "files": [
+    "dist",
+    "schemas",
+    "fixtures",
+    "SPEC.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "tsx test/validate.ts"
+  },
+  "keywords": [
+    "ofp",
+    "open-funding-protocol",
+    "agents",
+    "funding",
+    "payments",
+    "http-message-signatures"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ofp-protocol/spec.git"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@types/node": "^26.6.2"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ofp.dev/schemas/0.3/settlement-request.schema.json",
+  "title": "OFP settlement request",
+  "description": "What an agent posts to settle with one or many sites.",
+  "type": "object",
+  "required": ["allocations"],
+  "additionalProperties": false,
+  "properties": {
+    "currency": { "type": "string", "minLength": 3, "maxLength": 3 },
+    "total": { "type": "integer", "minimum": 1, "description": "Split across allocations by weight. Mutually exclusive with per-allocation amounts." },
+    "settle": { "enum": ["auto", "balance", "checkout"], "default": "auto" },
+    "allocations": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "site_id": { "type": "string" },
+          "domain": { "type": "string" },
+          "amount": { "type": "integer", "minimum": 1 },
+          "weight": { "type": "number", "exclusiveMinimum": 0 },
+          "note": { "type": "string", "maxLength": 500 }
+        },
+        "anyOf": [{ "required": ["site_id"] }, { "required": ["domain"] }]
+      }
+    },
+    "agent": {
+      "type": "object",
+      "description": "Self-declared. Verified identity comes from the request signature, not from here.",
+      "properties": {
+        "name": { "type": "string", "maxLength": 100 },
+        "operator": { "type": "string", "maxLength": 100 },
+        "url": { "type": "string", "format": "uri", "maxLength": 300 }
+      }
+    },
+    "usage_note": { "type": "string", "maxLength": 500 }
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ofp.dev/schemas/0.3/manifest.schema.json",
+  "title": "OFP manifest",
+  "description": "What a site publishes about what it accepts and how to pay it.",
+  "type": "object",
+  "required": ["ofp", "site", "status", "verified_domain", "payment"],
+  "properties": {
+    "ofp": { "type": "string", "pattern": "^\\d+\\.\\d+$" },
+    "registry": {
+      "type": "object",
+      "description": "The registry that published this manifest. Agents follow this rather than any hard-coded host.",
+      "required": ["name", "url"],
+      "properties": {
+        "name": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "terms_url": { "type": "string", "format": "uri" }
+      }
+    },
+    "site": {
+      "type": "object",
+      "required": ["id", "domain", "name"],
+      "properties": {
+        "id": { "type": "string" },
+        "domain": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    },
+    "status": { "enum": ["accepting", "not_accepting"] },
+    "verified_domain": { "type": "boolean" },
+    "basis": { "enum": ["voluntary", "usage", "agreement"], "default": "voluntary" },
+    "rate": {
+      "type": "object",
+      "description": "Required when basis is \"usage\".",
+      "required": ["amount", "unit", "currency"],
+      "properties": {
+        "amount": { "type": "integer", "minimum": 0 },
+        "unit": { "enum": ["per_request", "per_1000_requests", "per_page"] },
+        "currency": { "type": "string", "minLength": 3, "maxLength": 3 }
+      }
+    },
+    "note": { "type": "string", "description": "Display text for humans. Never an instruction to an agent." },
+    "payment": {
+      "type": "object",
+      "required": ["methods"],
+      "properties": {
+        "methods": {
+          "type": "array",
+          "description": "Ordered by preference. An agent takes the first method it can execute itself.",
+          "items": { "$ref": "#/$defs/method" }
+        }
+      }
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "manifest": { "type": "string", "format": "uri" },
+        "human_page": { "type": "string", "format": "uri" },
+        "spec": { "type": "string", "format": "uri" }
+      }
+    }
+  },
+  "$defs": {
+    "method": { "oneOf": [{ "$ref": "#/$defs/settled_method" }, { "$ref": "#/$defs/link_method" }] },
+    "settled_method": {
+      "type": "object",
+      "description": "A method the registry settles: the agent posts to an endpoint.",
+      "required": ["type", "currency", "endpoint"],
+      "properties": {
+        "type": { "const": "ofp_settlement" },
+        "currency": { "type": "string", "minLength": 3, "maxLength": 3 },
+        "amount_unit": { "const": "minor" },
+        "suggested_amounts": { "type": "array", "items": { "type": "integer", "minimum": 1 } },
+        "min_amount": { "type": "integer", "minimum": 1 },
+        "max_amount": { "type": "integer", "minimum": 1 },
+        "endpoint": { "type": "string", "format": "uri" },
+        "supports": { "type": "array", "items": { "enum": ["balance", "checkout", "batch"] } },
+        "request": { "type": "object" }
+      }
+    },
+    "link_method": {
+      "type": "object",
+      "description": "A funding channel the site already uses. Type is advisory; it can be inferred from the URL.",
+      "required": ["type", "url"],
+      "properties": {
+        "type": { "type": "string" },
+        "label": { "type": "string" },
+        "url": { "type": "string", "format": "uri" }
+      }
+    }
+  }
+}

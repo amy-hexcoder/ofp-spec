@@ -1,0 +1,24 @@
+{
+  "ofp": "0.3",
+  "registry": { "name": "Copen", "url": "https://copen.dev" },
+  "site": { "id": "site_9fd3ka81", "domain": "api.example.org", "name": "Example Data" },
+  "status": "accepting",
+  "verified_domain": true,
+  "basis": "usage",
+  "rate": { "amount": 20, "unit": "per_1000_requests", "currency": "usd" },
+  "note": "Automated readers are welcome at the published rate.",
+  "payment": {
+    "methods": [
+      {
+        "type": "ofp_settlement",
+        "currency": "usd",
+        "amount_unit": "minor",
+        "suggested_amounts": [20, 200],
+        "min_amount": 20,
+        "max_amount": 100000,
+        "endpoint": "https://copen.dev/api/v1/settlements",
+        "supports": ["balance", "batch"]
+      }
+    ]
+  }
+}
