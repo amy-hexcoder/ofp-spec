@@ -1,5 +1,5 @@
 {
-  "ofp": "0.3",
+  "openfp": "0.3",
   "site": { "id": "site_7bq2ln55", "domain": "blog.example.org", "name": "Example Blog" },
   "status": "accepting",
   "verified_domain": true,

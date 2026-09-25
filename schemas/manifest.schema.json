@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ofp.dev/schemas/0.3/manifest.schema.json",
-  "title": "OFP manifest",
+  "$id": "https://openfp.dev/schemas/0.3/manifest.schema.json",
+  "title": "OPENFP manifest",
   "description": "What a site publishes about what it accepts and how to pay it.",
   "type": "object",
-  "required": ["ofp", "site", "status", "verified_domain", "payment"],
+  "required": ["openfp", "site", "status", "verified_domain", "payment"],
   "properties": {
-    "ofp": { "type": "string", "pattern": "^\\d+\\.\\d+$" },
+    "openfp": { "type": "string", "pattern": "^\\d+\\.\\d+$" },
     "registry": {
       "type": "object",
       "description": "The registry that published this manifest. Agents follow this rather than any hard-coded host.",
@@ -68,7 +68,7 @@
       "description": "A method the registry settles: the agent posts to an endpoint.",
       "required": ["type", "currency", "endpoint"],
       "properties": {
-        "type": { "const": "ofp_settlement" },
+        "type": { "const": "openfp_settlement" },
         "currency": { "type": "string", "minLength": 3, "maxLength": 3 },
         "amount_unit": { "const": "minor" },
         "suggested_amounts": { "type": "array", "items": { "type": "integer", "minimum": 1 } },

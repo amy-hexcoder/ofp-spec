@@ -1,5 +1,5 @@
 {
-  "ofp": "0.3",
+  "openfp": "0.3",
   "site": { "id": "site_bad", "domain": "broken.example.com", "name": "Broken" },
   "status": "accepting",
   "verified_domain": true

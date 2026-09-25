@@ -18,18 +18,18 @@ order and stop at the first hit.
 
 | # | Surface | Form |
 |---|---------|------|
-| 1 | Well-known file | `GET https://<domain>/.well-known/ofp.json` |
-| 2 | HTTP header | `Link: <MANIFEST_URL>; rel="ofp"` on any response (works with HEAD) |
-| 3 | HTML head | `<link rel="ofp" type="application/json" href="MANIFEST_URL">` or `<meta name="ofp" content="MANIFEST_URL">` |
+| 1 | Well-known file | `GET https://<domain>/.well-known/openfp.json` |
+| 2 | HTTP header | `Link: <MANIFEST_URL>; rel="openfp"` on any response (works with HEAD) |
+| 3 | HTML head | `<link rel="openfp" type="application/json" href="MANIFEST_URL">` or `<meta name="openfp" content="MANIFEST_URL">` |
 | 4 | Registry | `GET <registry>/api/v1/lookup?domain=<domain>`, or `?domains=a.com,b.com` for a whole crawl |
 
-Informational only, for humans and for crawlers that read these files: a `# OFP: MANIFEST_URL`
+Informational only, for humans and for crawlers that read these files: a `# OPENFP: MANIFEST_URL`
 comment in robots.txt, a section in llms.txt, and a schema.org `DonateAction` in JSON-LD.
 
 The well-known file is either a full manifest or a pointer:
 
 ```json
-{ "ofp": "0.3", "site_id": "site_k2p9", "manifest": "https://copen.dev/api/v1/manifest/site_k2p9", "verification": "ofv_..." }
+{ "openfp": "0.3", "site_id": "site_k2p9", "manifest": "https://copen.dev/api/v1/manifest/site_k2p9", "verification": "ofv_..." }
 ```
 
 If it contains `manifest`, the agent fetches that URL. `verification` proves domain ownership to
@@ -44,7 +44,7 @@ See [`schemas/manifest.schema.json`](schemas/manifest.schema.json). Abbreviated:
 
 ```json
 {
-  "ofp": "0.3",
+  "openfp": "0.3",
   "registry": { "name": "Copen", "url": "https://copen.dev" },
   "site": { "id": "site_k2p9", "domain": "docs.example.com", "name": "Example Docs" },
   "status": "accepting",
@@ -54,7 +54,7 @@ See [`schemas/manifest.schema.json`](schemas/manifest.schema.json). Abbreviated:
   "payment": {
     "methods": [
       {
-        "type": "ofp_settlement",
+        "type": "openfp_settlement",
         "currency": "usd",
         "amount_unit": "minor",
         "suggested_amounts": [100, 500, 2000],
@@ -78,7 +78,7 @@ See [`schemas/manifest.schema.json`](schemas/manifest.schema.json). Abbreviated:
   - `agreement`: covered by an arrangement made outside this protocol. The manifest exists so
     agents stop asking.
 - `payment.methods` is ordered by preference. An agent takes the first method it can execute
-  itself and ignores the rest. A method is either `ofp_settlement`, which this protocol defines,
+  itself and ignores the rest. A method is either `openfp_settlement`, which this protocol defines,
   or a funding channel the site already uses, carrying only `type`, `label` and `url`.
 - Funding-channel types follow npm's `funding` convention: `github`, `opencollective`, `patreon`,
   `kofi`, `buymeacoffee`, `liberapay`, `tidelift`, `thanksdev`, `polar`, `custom`. The type can
@@ -132,7 +132,7 @@ carrying. Registries MUST NOT expose which individual users or sessions were beh
 
 ## 4. Settlement
 
-One endpoint settles one site or fifty: `POST` the `endpoint` of the `ofp_settlement` method.
+One endpoint settles one site or fifty: `POST` the `endpoint` of the `openfp_settlement` method.
 See [`schemas/settlement-request.schema.json`](schemas/settlement-request.schema.json).
 
 ```json
@@ -227,7 +227,7 @@ Errors use `{ "error": { "code", "message" } }` with the codes in
 
 ## 7. Roadmap
 
-- Machine-native payment methods in `payment.methods` beside `ofp_settlement`: agent payment
+- Machine-native payment methods in `payment.methods` beside `openfp_settlement`: agent payment
   protocols, stored payment credentials, HTTP 402 flows.
 - Owner-level recipients, so several domains under one owner collapse into one recipient the way
   many packages collapse into one funder.

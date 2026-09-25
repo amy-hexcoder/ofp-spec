@@ -1,6 +1,6 @@
 {
-  "name": "@ofp/spec",
-  "version": "0.3.0",
+  "name": "@openfp/spec",
+  "version": "0.3.2",
   "description": "Open Funding Protocol: how a site tells AI agents what it accepts, and how an agent declares who it is and settles up. Spec, JSON Schemas, types and conformance fixtures.",
   "license": "MIT",
   "type": "module",
@@ -26,7 +26,7 @@
     "test": "tsx test/validate.ts"
   },
   "keywords": [
-    "ofp",
+    "openfp",
     "open-funding-protocol",
     "agents",
     "funding",
@@ -35,7 +35,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ofp-protocol/spec.git"
+    "url": "git+https://github.com/amy-hexcoder/ofp-spec.git"
   },
   "devDependencies": {
     "ajv": "^8.17.1",
@@ -44,6 +44,15 @@
     "typescript": "^5.7.3"
   },
   "dependencies": {
+    "@openfp/spec": "^0.3.0",
     "@types/node": "^26.6.2"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "author": "Amy",
+  "bugs": {
+    "url": "https://github.com/amy-hexcoder/ofp-spec/issues"
+  },
+  "homepage": "https://github.com/amy-hexcoder/ofp-spec#readme"
 }

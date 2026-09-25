@@ -1,12 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ofp.dev/schemas/0.3/well-known.schema.json",
-  "title": "OFP well-known document",
-  "description": "Served at https://<domain>/.well-known/ofp.json. Either a full manifest, or a pointer to one.",
+  "$id": "https://openfp.dev/schemas/0.3/well-known.schema.json",
+  "title": "OPENFP well-known document",
+  "description": "Served at https://<domain>/.well-known/openfp.json. Either a full manifest, or a pointer to one.",
   "type": "object",
-  "required": ["ofp"],
+  "required": ["openfp"],
   "properties": {
-    "ofp": { "type": "string", "pattern": "^\\d+\\.\\d+$" },
+    "openfp": { "type": "string", "pattern": "^\\d+\\.\\d+$" },
     "site_id": { "type": "string" },
     "manifest": { "type": "string", "format": "uri" },
     "verification": { "type": "string", "description": "Domain-ownership token for the registry. Agents ignore it." }

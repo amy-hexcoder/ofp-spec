@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ofp.dev/schemas/0.3/settlement-request.schema.json",
-  "title": "OFP settlement request",
+  "$id": "https://openfp.dev/schemas/0.3/settlement-request.schema.json",
+  "title": "OPENFP settlement request",
   "description": "What an agent posts to settle with one or many sites.",
   "type": "object",
   "required": ["allocations"],

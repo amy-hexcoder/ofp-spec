@@ -3,20 +3,20 @@
  * The JSON Schemas in ./schemas are the normative artefact; these types mirror them.
  */
 
-export const OFP_VERSION = "0.3";
+export const OPENFP_VERSION = "0.3";
 
 /** Discovery surfaces, in the order an agent should try them. */
-export const WELL_KNOWN_PATH = "/.well-known/ofp.json";
-export const LINK_REL = "ofp";
-export const META_NAME = "ofp";
-export const VERIFICATION_META = "ofp-verification";
-export const DNS_PREFIX = "_ofp";
+export const WELL_KNOWN_PATH = "/.well-known/openfp.json";
+export const LINK_REL = "openfp";
+export const META_NAME = "openfp";
+export const VERIFICATION_META = "openfp-verification";
+export const DNS_PREFIX = "_openfp";
 
 export type Basis = "voluntary" | "usage" | "agreement";
 export type RateUnit = "per_request" | "per_1000_requests" | "per_page";
 
 export type SettledMethod = {
-  type: "ofp_settlement";
+  type: "openfp_settlement";
   currency: string;
   amount_unit: "minor";
   suggested_amounts: number[];
@@ -30,10 +30,10 @@ export type SettledMethod = {
 export type LinkMethod = { type: string; label?: string; url: string };
 export type PaymentMethod = SettledMethod | LinkMethod;
 
-export const isSettledMethod = (m: PaymentMethod): m is SettledMethod => m.type === "ofp_settlement";
+export const isSettledMethod = (m: PaymentMethod): m is SettledMethod => m.type === "openfp_settlement";
 
 export type Manifest = {
-  ofp: string;
+  openfp: string;
   registry?: { name: string; url: string; terms_url?: string };
   site: { id: string; domain: string; name: string; description?: string };
   status: "accepting" | "not_accepting";
@@ -45,7 +45,7 @@ export type Manifest = {
   links?: { manifest?: string; human_page?: string; spec?: string };
 };
 
-export type WellKnown = { ofp: string; site_id?: string; manifest?: string; verification?: string };
+export type WellKnown = { openfp: string; site_id?: string; manifest?: string; verification?: string };
 
 export type SettlementRequest = {
   currency?: string;
@@ -99,7 +99,7 @@ export type ErrorCode =
   | "signature_invalid" | "key_unknown" | "operator_unverified" | "limit_exceeded" | "payment_provider_error";
 
 /** Version check: agents accept a manifest whose major version matches and whose minor is any. */
-export function isSupportedVersion(version: string, supported = OFP_VERSION): boolean {
+export function isSupportedVersion(version: string, supported = OPENFP_VERSION): boolean {
   const [maj] = version.split(".");
   const [supMaj] = supported.split(".");
   return maj === supMaj;

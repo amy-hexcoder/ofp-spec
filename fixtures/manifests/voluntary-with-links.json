@@ -1,5 +1,5 @@
 {
-  "ofp": "0.3",
+  "openfp": "0.3",
   "registry": { "name": "Copen", "url": "https://copen.dev" },
   "site": {
     "id": "site_k2p9x7m4",
@@ -14,7 +14,7 @@
   "payment": {
     "methods": [
       {
-        "type": "ofp_settlement",
+        "type": "openfp_settlement",
         "currency": "usd",
         "amount_unit": "minor",
         "suggested_amounts": [100, 500, 2000],

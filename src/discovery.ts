@@ -22,7 +22,7 @@ export function headTags(input: { manifestUrl: string; verificationToken?: strin
     `<link rel="${LINK_REL}" type="application/json" href="${input.manifestUrl}">`,
     `<meta name="${META_NAME}" content="${input.manifestUrl}">`,
   ];
-  if (input.verificationToken) lines.push(`<meta name="ofp-verification" content="${input.verificationToken}">`);
+  if (input.verificationToken) lines.push(`<meta name="openfp-verification" content="${input.verificationToken}">`);
   if (input.jsonLd) lines.push(`<script type="application/ld+json">\n${JSON.stringify(input.jsonLd)}\n</script>`);
   return lines.join("\n");
 }

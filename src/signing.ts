@@ -1,5 +1,5 @@
 /**
- * Request signing for OFP, a practical subset of RFC 9421 (HTTP Message Signatures).
+ * Request signing for OPENFP, a practical subset of RFC 9421 (HTTP Message Signatures).
  *
  * Covered components: "@method", "@target-uri" and, when there is a body, "content-digest".
  * Algorithm: ed25519. Both sides of the protocol build the same signature base from these

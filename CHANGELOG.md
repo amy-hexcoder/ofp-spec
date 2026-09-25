@@ -4,8 +4,8 @@
 
 First public draft, and the first version with an identity layer.
 
-- **Renamed the discovery surface to the protocol**: `/.well-known/ofp.json`, `rel="ofp"`,
-  `<meta name="ofp">`, `Link: <manifest>; rel="ofp"`. Earlier drafts used vendor-specific names.
+- **Renamed the discovery surface to the protocol**: `/.well-known/openfp.json`, `rel="openfp"`,
+  `<meta name="openfp">`, `Link: <manifest>; rel="openfp"`. Earlier drafts used vendor-specific names.
 - **`payment.methods`** is an ordered list. Registry-settled methods sit alongside funding
   channels the site already uses (GitHub Sponsors, Open Collective and so on), following npm's
   `funding` convention: the type can always be inferred from the URL.

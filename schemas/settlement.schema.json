@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://ofp.dev/schemas/0.3/settlement.schema.json",
-  "title": "OFP settlement",
+  "$id": "https://openfp.dev/schemas/0.3/settlement.schema.json",
+  "title": "OPENFP settlement",
   "type": "object",
   "required": ["settlement_id", "status", "currency", "total", "contributions"],
   "properties": {
