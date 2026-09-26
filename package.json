@@ -1,6 +1,6 @@
 {
   "name": "@openfp/spec",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Open Funding Protocol: how a site tells AI agents what it accepts, and how an agent declares who it is and settles up. Spec, JSON Schemas, types and conformance fixtures.",
   "license": "MIT",
   "type": "module",
@@ -35,7 +35,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amy-hexcoder/ofp-spec.git"
+    "url": "https://github.com/ofp-protocol/spec.git"
   },
   "devDependencies": {
     "ajv": "^8.17.1",

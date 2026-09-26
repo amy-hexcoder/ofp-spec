@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.4.2
+
+- **`payouts_enabled`** on the manifest: whether the recipient can currently withdraw what they are
+  paid. A site may accept before it can withdraw, so this is advisory and optional. Agents that
+  care about the difference can read it; the rest can ignore it.
+
 ## 0.4.0
 
 Money was the only thing an agent could send. Now it can also say something.
