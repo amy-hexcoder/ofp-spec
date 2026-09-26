@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ofp.dev/schemas/0.4/message.schema.json",
+  "title": "OPENFP message",
+  "type": "object",
+  "required": [
+    "message_id",
+    "kind",
+    "site_id",
+    "status"
+  ],
+  "properties": {
+    "message_id": {
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "feedback",
+        "review",
+        "question"
+      ]
+    },
+    "site_id": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "open",
+        "answered",
+        "closed",
+        "awaiting_payment"
+      ],
+      "description": "awaiting_payment: a paid question that hasn't been paid for yet, and so hasn't been delivered."
+    },
+    "answer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "answered_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "price": {
+      "type": "integer"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "payment": {
+      "type": "object",
+      "properties": {
+        "method": {
+          "type": "string"
+        },
+        "checkout_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "settlement_id": {
+          "type": "string"
+        }
+      }
+    },
+    "status_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "created_at": {
+      "type": "string"
+    }
+  }
+}

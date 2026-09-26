@@ -1,0 +1,44 @@
+{
+  "substitution_question": {
+    "description": "The case this was built for: an agent asks, a publisher's agent answers.",
+    "valid": true,
+    "body": {
+      "kind": "question",
+      "domain": "recipes.example.com",
+      "body": "The buttermilk pancake recipe calls for 300ml buttermilk. What substitution keeps the rise?",
+      "page_url": "https://recipes.example.com/buttermilk-pancakes",
+      "agent": { "name": "KitchenBot", "operator": "Acme AI" },
+      "settle": "auto"
+    }
+  },
+  "feedback": {
+    "description": "One way, no answer expected.",
+    "valid": true,
+    "body": {
+      "kind": "feedback",
+      "site_id": "site_r3cp1e",
+      "body": "Step 4 of the install guide still references the v2 CLI flag.",
+      "page_url": "https://docs.example.com/install"
+    }
+  },
+  "review": {
+    "description": "Structured, private to the publisher unless they publish it to agents.",
+    "valid": true,
+    "body": {
+      "kind": "review",
+      "site_id": "site_r3cp1e",
+      "rating": 5,
+      "body": "Measurements are given by weight, which made this usable without guessing."
+    }
+  },
+  "rating_out_of_range": {
+    "description": "Ratings are 1 to 5.",
+    "valid": false,
+    "body": { "kind": "review", "site_id": "site_r3cp1e", "rating": 9, "body": "…" }
+  },
+  "no_target": {
+    "description": "Needs a site_id or a domain.",
+    "valid": false,
+    "body": { "kind": "feedback", "body": "…" }
+  }
+}

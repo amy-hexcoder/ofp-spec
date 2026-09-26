@@ -62,6 +62,8 @@ export type Manifest = {
   site: { id: string; domain: string; name: string; description?: string };
   status: "accepting" | "not_accepting";
   verified_domain: boolean;
+  /** Whether the recipient can currently withdraw what they are paid. Advisory. */
+  payouts_enabled?: boolean;
   basis: Basis;
   rate?: { amount: number; unit: RateUnit; currency: string };
   note?: string;

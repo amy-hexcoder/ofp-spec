@@ -1,11 +1,26 @@
 # Changelog
 
+## 0.4.0
+
+Money was the only thing an agent could send. Now it can also say something.
+
+- **`interactions`** in the manifest: which of `feedback`, `review` and `question` a site accepts,
+  whether questions get answered, and what asking costs.
+- **`POST /api/v1/messages`**: one endpoint for all three kinds. Identity comes from the request
+  signature, the same as settlements, so a publisher sees which operator sent it.
+- **Priced questions**: a question can carry a price, settled from an operator balance or by
+  checkout. Until it is paid it stays `awaiting_payment` and is not delivered.
+- **Answers**: a publisher can register an endpoint on their own domain, so their own agent answers
+  and the reply comes back inline. Otherwise the question waits in their inbox and the asking agent
+  polls the status URL.
+- **Reviews** carry a `visibility` of `private` or `agents`. Nothing is published to people.
+
 ## 0.3.0
 
 First public draft, and the first version with an identity layer.
 
-- **Renamed the discovery surface to the protocol**: `/.well-known/openfp.json`, `rel="openfp"`,
-  `<meta name="openfp">`, `Link: <manifest>; rel="openfp"`. Earlier drafts used vendor-specific names.
+- **Renamed the discovery surface to the protocol**: `/.well-known/ofp.json`, `rel="ofp"`,
+  `<meta name="ofp">`, `Link: <manifest>; rel="ofp"`. Earlier drafts used vendor-specific names.
 - **`payment.methods`** is an ordered list. Registry-settled methods sit alongside funding
   channels the site already uses (GitHub Sponsors, Open Collective and so on), following npm's
   `funding` convention: the type can always be inferred from the URL.

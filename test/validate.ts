@@ -13,6 +13,7 @@ addFormats(ajv);
 const load = (p: string) => JSON.parse(readFileSync(new URL(p, import.meta.url), "utf8"));
 const manifestSchema = ajv.compile(load("../schemas/manifest.schema.json"));
 const requestSchema = ajv.compile(load("../schemas/settlement-request.schema.json"));
+const messageSchema = ajv.compile(load("../schemas/message-request.schema.json"));
 
 let failures = 0;
 const check = (label: string, ok: boolean, detail?: unknown) => {
@@ -30,6 +31,11 @@ for (const file of readdirSync(new URL("../fixtures/manifests", import.meta.url)
 const requests = load("../fixtures/settlement-requests.json") as Record<string, { valid: boolean; body: unknown }>;
 for (const [name, fixture] of Object.entries(requests)) {
   check(`settlement request ${name}`, requestSchema(fixture.body) === fixture.valid, requestSchema.errors?.slice(0, 1));
+}
+
+const messages = load("../fixtures/message-requests.json") as Record<string, { valid: boolean; body: unknown }>;
+for (const [name, fixture] of Object.entries(messages)) {
+  check(`message request ${name}`, messageSchema(fixture.body) === fixture.valid, messageSchema.errors?.slice(0, 1));
 }
 
 // Signing vectors.

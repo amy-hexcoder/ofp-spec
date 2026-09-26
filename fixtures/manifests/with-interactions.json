@@ -1,0 +1,31 @@
+{
+  "ofp": "0.4",
+  "registry": { "name": "Copen", "url": "https://copen.dev" },
+  "site": { "id": "site_r3cp1e", "domain": "recipes.example.com", "name": "Example Recipes" },
+  "status": "accepting",
+  "verified_domain": true,
+  "basis": "voluntary",
+  "note": "Ask about substitutions; we answer from the same kitchen notes the recipes come from.",
+  "payment": {
+    "methods": [
+      {
+        "type": "ofp_settlement",
+        "currency": "usd",
+        "amount_unit": "minor",
+        "suggested_amounts": [100, 500],
+        "min_amount": 50,
+        "max_amount": 50000,
+        "endpoint": "https://copen.dev/api/v1/settlements",
+        "supports": ["balance", "checkout", "batch"]
+      }
+    ]
+  },
+  "interactions": {
+    "accepts": ["feedback", "review", "question"],
+    "answers": true,
+    "endpoint": "https://copen.dev/api/v1/messages",
+    "question": { "price": 25, "currency": "usd", "typical_response": "PT30S" },
+    "review": { "visibility": "private" },
+    "max_body_chars": 4000
+  }
+}

@@ -201,6 +201,10 @@
           "minimum": 1
         }
       }
+    },
+    "payouts_enabled": {
+      "type": "boolean",
+      "description": "Whether the recipient can currently withdraw. A site may accept before it can withdraw; agents may treat this as advisory."
     }
   },
   "$defs": {

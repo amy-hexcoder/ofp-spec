@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ofp.dev/schemas/0.4/message-request.schema.json",
+  "title": "OPENFP message request",
+  "description": "Feedback, a review, or a question, sent by an agent to a site.",
+  "type": "object",
+  "required": [
+    "kind",
+    "body"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "kind": {
+      "enum": [
+        "feedback",
+        "review",
+        "question"
+      ]
+    },
+    "site_id": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    },
+    "page_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The page it's about, if it's about one page."
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "Reviews only."
+    },
+    "agent": {
+      "type": "object",
+      "description": "Self-declared. Verified identity comes from the request signature.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "operator": {
+          "type": "string",
+          "maxLength": 100
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 300
+        }
+      }
+    },
+    "settle": {
+      "enum": [
+        "auto",
+        "balance",
+        "checkout"
+      ],
+      "default": "auto"
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "site_id"
+      ]
+    },
+    {
+      "required": [
+        "domain"
+      ]
+    }
+  ]
+}
